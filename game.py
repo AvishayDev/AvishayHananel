@@ -59,6 +59,10 @@ def value(s):
     dr = [-SIZE + 1, -SIZE + 1, 0, SIZE - 1]  # the next lines compute the heuristic val.
     dc = [0, SIZE - 1, SIZE - 1, SIZE - 1]
     val = 0.00001
+
+    #one point with 2 or more rows of 3 is better then
+    #point with one row of 3
+    count3 = 0
     for row in range(rows):
         for col in range(columns):
             for i in range(len(dr)):
@@ -66,8 +70,12 @@ def value(s):
                 if t in [LOSS, VICTORY]:
                     val = t
                     break
+                elif t == 10:
+                    count3 +=1
+                    val += t*count3
                 else:
                     val += t
+            count3 = 0
     if s.size == 0 and val not in [LOSS, VICTORY]:
         val = TIE
     return val
@@ -85,6 +93,7 @@ def checkSeq(s, r1, c1, r2, c2):
 
     sum = 0
 
+
     for i in range(SIZE):  # summing the values in the seq.
         sum += s.board[r1 + i * dr][c1 + i * dc]
         if s.board[r1 + i * dr][c1 + i * dc] == 0:
@@ -96,6 +105,7 @@ def checkSeq(s, r1, c1, r2, c2):
     elif sum == HUMAN * SIZE:
         return LOSS
 
+    # row for human
     if sum > 0 and sum < COMPUTER:
         if sum == 1:
             return -1
@@ -104,14 +114,16 @@ def checkSeq(s, r1, c1, r2, c2):
         elif sum == 3:
             return -10
 
+    # row for computer
     elif sum > 0 and sum % COMPUTER == 0:
-        number = sum/COMPUTER
+        number = sum / COMPUTER
         if number == 1:
             return 1
         elif number == 2:
             return 3
         elif number == 3:
             return 10
+
 
     return 0.000001  # not 0 because TIE is 0
 
@@ -226,9 +238,9 @@ def getNext(s):
             # print("possible move ", c)
             tmp = cpy(s)
             makeMove(tmp, c)
-            #print("tmp board=",tmp.board)
+            # print("tmp board=",tmp.board)
             ns += [tmp]
-            #print("ns=",ns)
+            # print("ns=",ns)
     return ns
 
 
