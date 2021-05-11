@@ -87,6 +87,8 @@ def checkSeq(s, r1, c1, r2, c2):
 
     for i in range(SIZE):  # summing the values in the seq.
         sum += s.board[r1 + i * dr][c1 + i * dc]
+        if s.board[r1 + i * dr][c1 + i * dc] == 0:
+            break
 
     if sum == COMPUTER * SIZE:
         return VICTORY
@@ -95,12 +97,23 @@ def checkSeq(s, r1, c1, r2, c2):
         return LOSS
 
     if sum > 0 and sum < COMPUTER:
-        return -1
+        if sum == 1:
+            return -1
+        elif sum == 2:
+            return -3
+        elif sum == 3:
+            return -10
 
     elif sum > 0 and sum % COMPUTER == 0:
-        return 1
+        number = sum/COMPUTER
+        if number == 1:
+            return 1
+        elif number == 2:
+            return 3
+        elif number == 3:
+            return 10
 
-    return 0.00001  # not 0 because TIE is 0
+    return 0.000001  # not 0 because TIE is 0
 
 
 def printState(s):
@@ -213,11 +226,11 @@ def getNext(s):
             # print("possible move ", c)
             tmp = cpy(s)
             makeMove(tmp, c)
-            # print("tmp board=",tmp.board)
+            #print("tmp board=",tmp.board)
             ns += [tmp]
-            # print("ns=",ns)
+            #print("ns=",ns)
     return ns
 
 
 def inputComputer(s):
-    return alphaBetaPruning.go(s)
+    return alphaBeta.go(s)
