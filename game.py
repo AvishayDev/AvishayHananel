@@ -73,8 +73,7 @@ def value(s):
                     break
                 elif t == 10:
                     count3 += 1
-                    count3times +=1
-                    val += t * count3 * count3times
+                    val += t * count3
                 else:
                     val += t
             count3=0
