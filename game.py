@@ -60,8 +60,8 @@ def value(s):
     dc = [0, SIZE - 1, SIZE - 1, SIZE - 1]
     val = 0.00001
 
-    #one point with 2 or more rows of 3 is better then
-    #point with one row of 3
+    # one point with 2 or more rows of 3 is better then
+    # point with one row of 3
     count3 = 0
     for row in range(rows):
         for col in range(columns):
@@ -71,8 +71,8 @@ def value(s):
                     val = t
                     break
                 elif t == 10:
-                    count3 +=1
-                    val += t*count3
+                    count3 += 1
+                    val += t * count3
                 else:
                     val += t
             count3 = 0
@@ -93,7 +93,15 @@ def checkSeq(s, r1, c1, r2, c2):
 
     sum = 0
 
-
+    #i = 0
+    #first = s.board[r1 + i * dr][c1 + i * dc]
+    #i += 1
+    #second = s.board[r1 + i * dr][c1 + i * dc]
+    #i += 1
+    #third = s.board[r1 + i * dr][c1 + i * dc]
+    #i += 1
+    #fourth = s.board[r1 + i * dr][c1 + i * dc]
+    #sum = first + second + third + fourth
     for i in range(SIZE):  # summing the values in the seq.
         sum += s.board[r1 + i * dr][c1 + i * dc]
         if s.board[r1 + i * dr][c1 + i * dc] == 0:
@@ -110,7 +118,7 @@ def checkSeq(s, r1, c1, r2, c2):
         if sum == 1:
             return -1
         elif sum == 2:
-            return -3
+            return -4
         elif sum == 3:
             return -10
 
@@ -123,7 +131,6 @@ def checkSeq(s, r1, c1, r2, c2):
             return 3
         elif number == 3:
             return 10
-
 
     return 0.000001  # not 0 because TIE is 0
 
