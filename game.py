@@ -63,6 +63,7 @@ def value(s):
     # one point with 2 or more rows of 3 is better then
     # point with one row of 3
     count3 = 0
+    count3times = 0
     for row in range(rows):
         for col in range(columns):
             for i in range(len(dr)):
@@ -72,10 +73,11 @@ def value(s):
                     break
                 elif t == 10:
                     count3 += 1
-                    val += t * count3
+                    count3times +=1
+                    val += t * count3 * count3times
                 else:
                     val += t
-            count3 = 0
+            count3=0
     if s.size == 0 and val not in [LOSS, VICTORY]:
         val = TIE
     return val
