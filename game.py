@@ -93,19 +93,19 @@ def checkSeq(s, r1, c1, r2, c2):
 
     sum = 0
 
-    # i = 0
-    # first = s.board[r1 + i * dr][c1 + i * dc]
-    # i += 1
-    # second = s.board[r1 + i * dr][c1 + i * dc]
-    # i += 1
-    # third = s.board[r1 + i * dr][c1 + i * dc]
-    # i += 1
-    # fourth = s.board[r1 + i * dr][c1 + i * dc]
-    # sum = first + second + third + fourth
-    for i in range(SIZE):  # summing the values in the seq.
-        sum += s.board[r1 + i * dr][c1 + i * dc]
-        if s.board[r1 + i * dr][c1 + i * dc] == 0:
-            break
+    i = 0
+    first = s.board[r1 + i * dr][c1 + i * dc]
+    i += 1
+    second = s.board[r1 + i * dr][c1 + i * dc]
+    i += 1
+    third = s.board[r1 + i * dr][c1 + i * dc]
+    i += 1
+    fourth = s.board[r1 + i * dr][c1 + i * dc]
+    sum = first + second + third + fourth
+    #for i in range(SIZE):  # summing the values in the seq.
+    #    sum += s.board[r1 + i * dr][c1 + i * dc]
+    #    if s.board[r1 + i * dr][c1 + i * dc] == 0:
+    #        break
 
     if sum == COMPUTER * SIZE:
         return VICTORY
