@@ -221,8 +221,9 @@ def inputRandom(s):
     for i in range(0, columns):  # this simple agent always plays min
         tmp = cpy(s)
         makeMove(tmp, i)
-        if (value(tmp) == LOSS):  # so a "loss" is a win for this side
+        if (value(tmp) == LOSS and s.board[0][i] == 0):  # so a "loss" is a win for this side
             makeMove(s, i)
+            return
     # If no obvious move, than move random
     flag = True
     while flag:
@@ -230,11 +231,10 @@ def inputRandom(s):
         if c < 0 or c >= columns or s.board[0][c] != 0:
             print("Illegal move.")
             printState(s)
-            break
+            #break
         else:
             flag = False
             makeMove(s, c)
-
 
 def getNext(s):
     # returns a list of the next states of s
